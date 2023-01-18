@@ -8,6 +8,6 @@ class ApplicationController < Sinatra::Base
 
   get "/items" do
     items = Item.all
-    items.to_json
+    items.to_json(include: [:reviews])
   end
 end
