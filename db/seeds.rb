@@ -11,9 +11,7 @@ Item.create(item_name: "Prana Pants", item_type: "Clothing")
 Item.create(item_name: "BD Cam #4", item_type: "Hardwear")
 
 Item.all.each do |item|
-    rand(2..8).times do
         Review.create(review: rev_ex.sample, item_id: item.id, item_rating: rand(6..10), reviewer_name: names.sample)
-    end
 end
 
 puts "✅ Done seeding!"
