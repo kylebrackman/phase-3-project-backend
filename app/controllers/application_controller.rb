@@ -8,9 +8,15 @@ class ApplicationController < Sinatra::Base
     items.to_json(include: [:reviews])
   end
 
-  delete "/items/:id" do
+  get "/reviews" do
+    reviews = Review.all
+    reviews.to_json
+  end
+
+  delete '/items/:id' do
     item = Item.find params[:id]
     item.destroy
     item.to_json
   end
+  
 end
