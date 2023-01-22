@@ -13,6 +13,11 @@ class ApplicationController < Sinatra::Base
     reviews.to_json
   end
 
+  get "/items/:id" do 
+    item = Item.find_by(id: params[:id])
+    item.to_json(include: [:reviews])
+  end
+
   delete '/items/:id' do
     item = Item.find params[:id]
     item.destroy
@@ -23,7 +28,8 @@ class ApplicationController < Sinatra::Base
     review = Review.create(
       review: params[:review],
       item_rating: params[:item_rating],
-      reviewer_name: params[:reviewer_name]
+      reviewer_name: params[:reviewer_name],
+      item_id: params[:item_id]
     )
     review.to_json
   end
