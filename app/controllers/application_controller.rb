@@ -3,7 +3,7 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
 
-  get '/item' do
+  get '/items' do
     items = Item.all
     items.to_json(include: [:reviews])
   end
