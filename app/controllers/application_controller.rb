@@ -3,17 +3,17 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
 
-  get "/items" do
+  get '/item' do
     items = Item.all
     items.to_json(include: [:reviews])
   end
 
-  get "/reviews" do
+  get '/reviews' do
     reviews = Review.all
     reviews.to_json
   end
 
-  get "/items/:id" do 
+  get '/items/:id' do 
     item = Item.find_by(id: params[:id])
     item.to_json(include: [:reviews])
   end
@@ -30,6 +30,15 @@ class ApplicationController < Sinatra::Base
       item_rating: params[:item_rating],
       reviewer_name: params[:reviewer_name],
       item_id: params[:item_id]
+    )
+    review.to_json
+  end
+
+  patch '/reviews' do
+    review = Review.find params[:id]
+    review.update(
+      review: params[:review],
+      item_rating: params[:item_rating]
     )
     review.to_json
   end
