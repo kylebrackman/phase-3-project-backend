@@ -22,9 +22,9 @@ class ApplicationController < Sinatra::Base
   post '/items' do
     item = Item.create(
       item_name: params[:itemName],
-      item_type: params[:itemType]
-    )
-    item.to_json
+      item_type: params[:itemType],
+        )
+    item.to_json(include: [:reviews])
   end
 
   get '/reviews' do
