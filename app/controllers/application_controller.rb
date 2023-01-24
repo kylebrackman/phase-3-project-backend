@@ -8,11 +8,6 @@ class ApplicationController < Sinatra::Base
     items.to_json(include: [:reviews])
   end
 
-  get '/reviews' do
-    reviews = Review.all
-    reviews.to_json
-  end
-
   get '/items/:id' do 
     item = Item.find_by(id: params[:id])
     item.to_json(include: [:reviews])
@@ -22,6 +17,19 @@ class ApplicationController < Sinatra::Base
     item = Item.find params[:id]
     item.destroy
     item.to_json
+  end
+
+  post '/items' do
+    item = Item.create(
+      item_name: params[:itemName],
+      item_type: params[:itemType]
+    )
+    item.to_json
+  end
+
+  get '/reviews' do
+    reviews = Review.all
+    reviews.to_json
   end
 
   post '/reviews' do
