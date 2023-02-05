@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
         )
     item.to_json(include: [:reviews])
   end
-
+# NOT USING IN FRONT END, STRICTLY FOR REQUIREMENTS
   get '/reviews' do
     reviews = Review.all
     reviews.to_json
