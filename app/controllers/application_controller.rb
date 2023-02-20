@@ -34,13 +34,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/reviews' do
-    # review = Review.create(
-    #   review: params[:review],
-    #   item_rating: params[:item_rating],
-    #   reviewer_name: params[:reviewer_name],
-    #   item_id: params[:item_id]
-    # )
-    # why is the below way preferable to the above way?›
     item = Item.find_by(id: params[:item_id])
     review = item.reviews.create(
       review: params[:review],
